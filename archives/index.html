@@ -1,583 +1,494 @@
 <!DOCTYPE html>
 <html>
-    <!-- title -->
-
-
-
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
-    <meta name="author" content="John Doe">
-    <meta name="renderer" content="webkit">
-    <meta name="copyright" content="John Doe">
-    <meta name="keywords" content="Hexo | John Doe">
-    <meta name="description" content="">
-    <meta name="Cache-Control" content="no-cache">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>fi3ework&#39;s Studio</title>
-    <style type="text/css">
-    @font-face {
-        font-family: 'Oswald-Regular';
-        src: url("/font/Oswald-Regular.ttf");
-    }
-
-    body {
-        margin: 0;
-    }
-
-    header,
-    footer,
-    .back-top,
-    .sidebar,
-    .container,
-    .site-intro-meta,
-    .toc-wrapper {
-        display: none;
-    }
-
-    .site-intro {
-        position: relative;
-        z-index: 3;
-        width: 100%;
-        /* height: 50vh; */
-        overflow: hidden;
-    }
-
-    .site-intro-placeholder {
-        position: absolute;
-        z-index: -2;
-        top: 0;
-        left: 0;
-        width: calc(100% + 300px);
-        height: 100%;
-        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
-        background-position: center center;
-        transform: translate3d(-226px, 0, 0);
-        animation: gradient-move 2.5s ease-out 0s 1;
-    }
-
-    @keyframes gradient-move {
-        0% {
-            transform: translate3d(-226px, 0, 0);
-        }
-        100% {
-            transform: translate3d(0, 0, 0);
-        }
-    }
-
-</style>
-
-    <link rel="preload" href= /css/style.css?v=20180524 as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <link rel="stylesheet" href= /css/mobile.css?v=20180524 media="(max-width: 980px)">
-        
-    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
-/* This file is meant as a standalone workflow for
-- testing support for link[rel=preload]
-- enabling async CSS loading in browsers that do not support rel=preload
-- applying rel preload css once loaded, whether supported or not.
-*/ -->
-<script>
-(function( w ){
-	"use strict";
-	// rel=preload support test
-	if( !w.loadCSS ){
-		w.loadCSS = function(){};
-	}
-	// define on the loadCSS obj
-	var rp = loadCSS.relpreload = {};
-	// rel=preload feature support test
-	// runs once and returns a function for compat purposes
-	rp.support = (function(){
-		var ret;
-		try {
-			ret = w.document.createElement( "link" ).relList.supports( "preload" );
-		} catch (e) {
-			ret = false;
-		}
-		return function(){
-			return ret;
-		};
-	})();
-
-	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
-	// then change that media back to its intended value on load
-	rp.bindMediaToggle = function( link ){
-		// remember existing media attr for ultimate state, or default to 'all'
-		var finalMedia = link.media || "all";
-
-		function enableStylesheet(){
-			link.media = finalMedia;
-		}
-
-		// bind load handlers to enable media
-		if( link.addEventListener ){
-			link.addEventListener( "load", enableStylesheet );
-		} else if( link.attachEvent ){
-			link.attachEvent( "onload", enableStylesheet );
-		}
-
-		// Set rel and non-applicable media type to start an async request
-		// note: timeout allows this to happen async to let rendering continue in IE
-		setTimeout(function(){
-			link.rel = "stylesheet";
-			link.media = "only x";
-		});
-		// also enable media after 3 seconds,
-		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
-		setTimeout( enableStylesheet, 3000 );
-	};
-
-	// loop through link elements in DOM
-	rp.poly = function(){
-		// double check this to prevent external calls from running
-		if( rp.support() ){
-			return;
-		}
-		var links = w.document.getElementsByTagName( "link" );
-		for( var i = 0; i < links.length; i++ ){
-			var link = links[ i ];
-			// qualify links to those with rel=preload and as=style attrs
-			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
-				// prevent rerunning on link
-				link.setAttribute( "data-loadcss", true );
-				// bind listeners to toggle media back
-				rp.bindMediaToggle( link );
-			}
-		}
-	};
-
-	// if unsupported, run the polyfill
-	if( !rp.support() ){
-		// run once at least
-		rp.poly();
-
-		// rerun poly on an interval until onload
-		var run = w.setInterval( rp.poly, 500 );
-		if( w.addEventListener ){
-			w.addEventListener( "load", function(){
-				rp.poly();
-				w.clearInterval( run );
-			} );
-		} else if( w.attachEvent ){
-			w.attachEvent( "onload", function(){
-				rp.poly();
-				w.clearInterval( run );
-			} );
-		}
-	}
-
-
-	// commonjs
-	if( typeof exports !== "undefined" ){
-		exports.loadCSS = loadCSS;
-	}
-	else {
-		w.loadCSS = loadCSS;
-	}
-}( typeof global !== "undefined" ? global : this ) );
-</script>
-
-    <link rel="icon" href= "/assets/favicon.ico" />
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />    
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
-    <link rel="preload" href="/scripts/main.js" as="script" />
-    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
-    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
-    <!-- 百度统计  -->
-    
-    <!-- 谷歌统计  -->
-    
-</head>
-
-    
-    
-<header class="header">
-
-    <div class="read-progress"></div>
-    <div class="header-sidebar-menu">&#xe775;</div>
-    <!-- post页的toggle banner  -->
-    
-    <a class="home-link" href=/>fi3ework's Studio.</a>
-</header>
-    <div class="wrapper">
-        <div class="site-intro" style=
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-
-
-
-
-
->
-    
-    <!-- 主页  -->
-            
-    <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
-    <div class="site-intro-meta">
-        <!-- 标题  -->
-        <h1 class="intro-title">
-            <!-- 主页  -->
-            
-        </h1>
-        <!-- 副标题 -->
-        <p class="intro-subtitle">
-            <!-- 主页副标题  -->
-            
-        </p>
-        <!-- 文章页meta -->
-        
-    </div>
-</div>
-        <script>
-  // load webfont-loader async, and add callback function
-  function async(u, cb, err) {
-    var d = document, t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
-    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
-    s.parentNode.insertBefore(o, s);
-  }
+<title>
   
-  // get user agent
-  var browser = {
-    versions: function () {
-      var u = window.navigator.userAgent;
-      return {
-        userAgent: u,
-        trident: u.indexOf('Trident') > -1, //IE内核
-        presto: u.indexOf('Presto') > -1, //opera内核
-        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
-        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
-        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
-        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
-        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
-        iPad: u.indexOf('iPad') > -1, //是否为iPad
-        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
-        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
-        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
-      };
-    }()
-  }
-  console.log("userAgent:" + browser.versions.userAgent);
+    Archive
+  
+</title>
 
-  // callback
-  function fontLoaded() {
-    console.log('font loaded');
-    if (document.getElementsByClassName('site-intro-meta')) {
-      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
-      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
-      var postIntros = document.getElementsByClassName('post-intros')[0]
-      if (postIntros) {
-        postIntros.classList.add('post-fade-in');
-      }
-    }
-  }
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
 
-  // UC不支持跨域，所以直接显示
-  function asyncCb(){
-    if (browser.versions.uc) {
-      console.log("UCBrowser");
-      fontLoaded();
-    } else {
-      WebFont.load({
-        custom: {
-          families: ['Oswald-Regular']
-        },
-        loading: function () {  //所有字体开始加载
-          // console.log('loading');
-        },
-        active: function () {  //所有字体已渲染
-          fontLoaded();
-        },
-        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
-          console.log('inactive: timeout');
-          fontLoaded();
-        },
-        timeout: 5000 // Set the timeout to two seconds
-      });
-    }
-  }
 
-  function asyncErr(){
-    console.warn('script load from CDN failed, will load local script')
-  }
+  <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
 
-  var asyncLoadWithFallBack = function(arr, success, reject) {
-      var currReject = function(){
-        reject()
-        arr.shift()
-        if(arr.length)
-          async(arr[0], success, currReject)
-        }
 
-      async(arr[0], success, currReject)
-  }
 
-  asyncLoadWithFallBack([
-    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
-    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
-    "/lib/webfontloader.min.js"
-  ], asyncCb, asyncErr)
-</script>        
-        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
-        <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-        <article class="index-post">
-            <a class="abstract-title" href = "/2018/05/26/first/" >
-                
-                    <span>[Untitled Post]</span>
-            </a>
-            <div class="abstract-content">
-                MySQL建表及外约束
-​    
-如果指定的数据库存在则删除该数据库drop database if exists school;
-创建数据库并指定默认的字符集create database school default charset utf8;
-切换到school数据库use school;
+  <link rel="icon" href="/favicon.png">
 
-关系型数据库通过二维表来组织数据varchar（10）表示字符串，10表示最大长度为10个字符char(11) 定长字符串timestamp 时间戳datetime 时间date日期default 1  默认为1，默认值约束comment ‘’也可以做注
 
-假如学生表存在则删除学生表drop...
-            </div>
-            <div class="abstract-post-meta">
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/26</span>
-                </div>
-                <!-- tags  -->
-                
-            </div>
-        </article>
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
+
+
+
+
+
+
+</head>
+<body
+  
+    class="monochrome"
+  
+  >
+  <div class="mobile-header">
+  <button class="sidebar-toggle" type="button">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="title" href="/">Hexo</a>
+</div>
+
+  <div class="main-container">
+    <div class="sidebar">
+  <div class="header">
+    <h1 class="title"><a href="/">Hexo</a></h1>
     
-    
-    
-        <article class="index-post">
-            <a class="abstract-title" href = "/2018/05/25/hello-world/" >
-                
-                    <span>Hello World</span>
-            </a>
-            <div class="abstract-content">
-                Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StaCreate a new1$ hexo new "My New Post"
-More info: Writing
-Run server1$ hexo server
-More info: ...
-            </div>
-            <div class="abstract-post-meta">
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/25</span>
-                </div>
-                <!-- tags  -->
-                
-            </div>
-        </article>
-    
-    <!-- paginator  -->
-    
-</main>
-            <!-- profile -->
-            
+    <div class="info">
+      <div class="content">
+        
+        
+          <div class="author">John Doe</div>
+        
+      </div>
+      
+        <div class="avatar">
+          
+            <a href="/about"><img src="https://cn.gravatar.com/avatar/35fef74d731255cd569c2c2b0b9e87e4?s=200"></a>
+          
         </div>
-        <footer class="footer footer-unloaded">
-    <!-- social  -->
-    
-    <div class="social">
-        
-    
-        
-            
-                <a href="mailto:12345@qq.com" class="iconfont-archer email" title=email ></a>
-            
-        
-    
-        
-            
-                <a href="//github.com/fi3ework" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
-    
-        
-            
-                <span class="iconfont-archer wechat" title=wechat>
-                  
-                  <img class="profile-qr" src="/assets/example_qr.png" />
-                </span>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-    </div>
-    
-    <!-- powered by Hexo  -->
-    <div class="copyright">
-        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
-    </div>
-    <!-- 不蒜子  -->
-    
-    <div class="busuanzi-container">
-    
-     
-    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
-    
-    </div>
-    
-</footer>
-    </div>
-    <!-- toc -->
-    
-    <div class="back-top iconfont-archer">&#xe639;</div>
-    <div class="sidebar sidebar-hide">
-    <ul class="sidebar-tabs sidebar-tabs-active-0">
-        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
-        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
-        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
-    </ul>
-    <div class="sidebar-content sidebar-content-show-archive">
-          <div class="sidebar-panel-archives">
-    <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="total-archive"> Total : 2 </div>
-    
-    <div class="post-archive">
-    
-    
-    
-    
-    <div class="archive-year"> 2018 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/26</span><a class="archive-post-title" href= "/2018/05/26/first/" >[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/25</span><a class="archive-post-title" href= "/2018/05/25/hello-world/" >Hello World</a>
-        </li>
-    
+      
     </div>
   </div>
-        <div class="sidebar-panel-tags">
-    <div class="sidebar-tags-name">
+  <div class="body">
     
-    </div>
-    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
-    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
-    缺失模块。<br/>
-    1、请确保node版本大于6.2<br/>
-    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
-    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
-    3、在根目录_config.yml里添加配置：
-    <pre style="color: #787878; font-size: 0.6rem;">
-jsonContent:
-  meta: false
-  pages: false
-  posts:
-    title: true
-    date: true
-    path: true
-    text: false
-    raw: false
-    content: false
-    slug: false
-    updated: false
-    comments: false
-    link: false
-    permalink: false
-    excerpt: false
-    categories: true
-    tags: true</pre>
-    </div> 
-    <div class="sidebar-tags-list"></div>
+      
+        <ul class="nav">
+          
+            
+              <li class="category-list-container">
+                <a href="javascript:;">Category</a>
+                
+              </li>
+            
+          
+            
+              <li class="tag-list-container">
+                <a href="javascript:;">Tag</a>
+                
+              </li>
+            
+          
+            
+              <li class="archive-list-container">
+                <a href="javascript:;">Archive</a>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a><span class="archive-list-count">2</span></li></ul>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/" title="Homepage">Homepage</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/archives" title="By Year">By Year</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="https://github.com/denjones/hexo-theme-chan" title="Chan" target="_blank" rel="noopener">Chan</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="https://github.com/denjones" title="Github" target="_blank" rel="noopener">Github</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/atom.xml" title="RSS">RSS</a>
+              </li>
+            
+          
+        </ul>
+      
+    
+  </div>
 </div>
-        <div class="sidebar-panel-categories">
-    <div class="sidebar-categories-name">
+
+    <div class="main-content">
+      
+        <div style="max-width: 1000px">
+      
+          
+
+  
+  
     
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <h1><a href="/archives/2018" class="archive-year">2018</a></h1>
+        </div>
+        <div class="post-list">
+    
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/2018/05/26/first/" >
+  
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2018/05/26/first/"><span class="article-date">
+  2018-05-26
+</span>
+</a>
+        
+
+        
+
+      </div>
+      <div class="article-entry">
+        
+          <h1 id="MySQL建表及外约束"><a href="#MySQL建表及外约束" class="headerlink" title="MySQL建表及外约束"></a>MySQL建表及外约束</h1><hr>
+<p>​    </p>
+<h3 id="如果指定的数据库存在则删除该数据库"><a href="#如果指定的数据库存在则删除该数据库" class="headerlink" title="如果指定的数据库存在则删除该数据库"></a>如果指定的数据库存在则删除该数据库</h3><p><code>drop database if exists school;</code></p>
+<h3 id="创建数据库并指定默认的字符集"><a href="#创建数据库并指定默认的字符集" class="headerlink" title="创建数据库并指定默认的字符集"></a>创建数据库并指定默认的字符集</h3><p><code>create database school default charset utf8;</code></p>
+<h3 id="切换到school数据库"><a href="#切换到school数据库" class="headerlink" title="切换到school数据库"></a>切换到school数据库</h3><p><code>use school;</code></p>
+<blockquote>
+<p>关系型数据库通过二维表来组织数据<br>varchar（10）表示字符串，10表示最大长度为10个字符<br>char(11) 定长字符串<br>timestamp 时间戳<br>datetime 时间<br>date日期<br>default 1  默认为1，默认值约束<br>comment ‘’也可以做注</p>
+</blockquote>
+<h3 id="假如学生表存在则删除学生表"><a href="#假如学生表存在则删除学生表" class="headerlink" title="假如学生表存在则删除学生表"></a>假如学生表存在则删除学生表</h3><p><code>drop table if exists tb_student;</code></p>
+<h3 id="创建学生表"><a href="#创建学生表" class="headerlink" title="创建学生表"></a>创建学生表</h3><blockquote>
+<p>主键(primary key) - 能够标识唯一一条记录的列</p>
+</blockquote>
+<p><code>create table tb_student</code></p>
+<p><code>(</code><br><code>stuid int not null comment &#39;学号&#39;,</code><br><code>sname varchar(10) not null comment &#39;姓名&#39;,</code><br><code>ssex bit default 1 comment &#39;性别&#39;,</code><br><code>stel char(11) comment &#39;联系电话&#39;,</code><br><code>sbirth date comment &#39;出生日期&#39;,</code><br><code>primary key (stuid)</code><br><code>);</code></p>
+<h3 id="修改学生表"><a href="#修改学生表" class="headerlink" title="修改学生表"></a>修改学生表</h3><p><code>alter table tb_student add column saddr varchar(100);</code><br><code>alter table tb_student drop column stel;</code></p>
+<h3 id="插入学生记录"><a href="#插入学生记录" class="headerlink" title="插入学生记录"></a>插入学生记录</h3><p><code>insert into tb_student values (1001, &#39;王大锤&#39;, 1, &#39;1990-2-12&#39;, &#39;四川成都&#39;);</code><br><code>insert into tb_student (sname, stuid) values (&#39;骆昊&#39;, 1002);</code><br><code>insert into tb_student (stuid, sname, ssex) values (1003, &#39;李飘飘&#39;, 0);</code><br><code>insert into tb_student values</code><br><code>(1004, &#39;张三丰&#39;, 1, &#39;1940-12-3&#39;, &#39;湖北武汉&#39;),</code><br><code>(1005, &#39;黄蓉&#39;, 0, &#39;1975-3-25&#39;, &#39;山东东营&#39;),</code><br><code>(1006, &#39;杨过&#39;, 1, &#39;1987-1-19&#39;, &#39;湖南长沙&#39;);</code></p>
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><p><code>delete from tb_student where stuid=1003;</code></p>
+<p>###更新数据</p>
+<blockquote>
+<p>通常情况下更新或删除单条数据都是以ID字段(主键)作为条件</p>
+</blockquote>
+<p><code>update tb_student set sbirth=&#39;1980-11-28&#39;, saddr=&#39;四川德阳&#39;</code><br><code>where sname=&#39;小明&#39;;</code><br>update tb_student set saddr=’四川绵阳’<br><code>where stuid=1004 or stuid=1005 or stuid=1006;</code><br>update tb_student set saddr=’四川绵阳’<br><code>where stuid in (1004, 1005, 1006);</code></p>
+<h3 id="创建课程表-课程编号-课程名称-学分"><a href="#创建课程表-课程编号-课程名称-学分" class="headerlink" title="创建课程表(课程编号/课程名称/学分)"></a>创建课程表(课程编号/课程名称/学分)</h3><p><code>create table tb_course
+(
+courseid int not null,
+cname varchar(20) not null,
+ccredit int not null,
+primary key (courseid)
+);</code></p>
+<h3 id="添加课程表数据"><a href="#添加课程表数据" class="headerlink" title="添加课程表数据"></a>添加课程表数据</h3><p><code>insert into tb_course (courseid, cname, ccredit) values` 
+`(1111, &#39;Python程序设计&#39;, 4),`
+`(2222, &#39;HTML程序设计&#39;, 2),`
+`(3333, &#39;Linux操作系统&#39;, 1),`
+`(4444, &#39;数据库基础&#39;, 1);</code></p>
+<h3 id="创建人表格"><a href="#创建人表格" class="headerlink" title="创建人表格"></a>创建人表格</h3><p><code>create table tb_person
+(
+personid int not null auto_increment,
+pname varchar(20) not null,
+pbirth date,
+primary key (personid)
+);</code></p>
+<h3 id="创建人的属性-id-表格"><a href="#创建人的属性-id-表格" class="headerlink" title="创建人的属性(id)表格"></a>创建人的属性(id)表格</h3><p><code>create table tb_idcard
+(
+cardid char(18) not null,
+cpolice varchar(20) not null,
+cexpire date not null,
+pid int not null,
+primary key (cardid)
+);</code></p>
+<p>###外键约束<br><code>alter table tb_idcard add constraint fk_idcard_pid
+foreign key (pid) references tb_person (personid);</code></p>
+<h3 id="唯一性约束"><a href="#唯一性约束" class="headerlink" title="唯一性约束"></a>唯一性约束</h3><p><code>alter table tb_idcard add constraint uk_idcard_pid 
+unique (pid);</code></p>
+<h3 id="插入人表格内容"><a href="#插入人表格内容" class="headerlink" title="插入人表格内容"></a>插入人表格内容</h3><p><code>insert into tb_person (pname, pbirth) values 
+(&#39;小明&#39;, &#39;1980-11-28&#39;),
+(&#39;王大锤&#39;, &#39;1990-01-01&#39;);</code></p>
+<h3 id="插入人的属性表格内容"><a href="#插入人的属性表格内容" class="headerlink" title="插入人的属性表格内容"></a>插入人的属性表格内容</h3><p><code>insert into tb_idcard values 
+(&#39;510622198011288899&#39;, &#39;成都金牛区公安局&#39;, &#39;2030-01-10&#39;, 1),
+(&#39;110220199001019876&#39;, &#39;北京朝阳区公安局&#39;, &#39;2022-05-12&#39;, 2);</code></p>
+<h3 id="创建人和人属性表格的关联性表格"><a href="#创建人和人属性表格的关联性表格" class="headerlink" title="创建人和人属性表格的关联性表格"></a>创建人和人属性表格的关联性表格</h3><p><code>create table tb_account
+(
+accid char(16) not null,
+balance decimal(16,2) default 0.0,
+pid int not null,
+primary key (accid)
+);</code></p>
+<h3 id="添加外键约束"><a href="#添加外键约束" class="headerlink" title="添加外键约束"></a>添加外键约束</h3><p><code>alter table tb_account add constraint fk_account_pid 
+foreign key (pid) references tb_person (personid);</code></p>
+<h3 id="在第三方表格插入内容"><a href="#在第三方表格插入内容" class="headerlink" title="在第三方表格插入内容"></a>在第三方表格插入内容</h3><p><code>insert into tb_account values 
+(&#39;1111222233334444&#39;, 99999.99, 1),
+(&#39;4444333322221111&#39;, 100.0, 1);</code></p>
+<p><code>insert into tb_account values 
+(&#39;1111222233335555&#39;, 99.99, 2),
+(&#39;4444333322221234&#39;, -100.0, 2),
+(&#39;4444333322224321&#39;, -200.0, 2);</code></p>
+<blockquote>
+<p>复合主键(多个列合在一起作为主键)<br> 实际开发中一般都不用复合主键因为可能导致各种麻烦</p>
+</blockquote>
+<p><code>create table tb_sc
+(
+scid int not null auto_increment,
+sid int not null,
+cid int not null,
+score float,
+primary key (scid)
+);</code></p>
+<p><code>alter table tb_sc add constraint fk_sc_sid 
+foreign key (sid) references tb_student (stuid);</code></p>
+<p><code>alter table tb_sc add constraint fk_sc_cid 
+foreign key (cid) references tb_course (courseid);</code></p>
+<p><code>insert into tb_sc (sid, cid, score) values 
+(1001, 1111, 90),
+(1001, 2222, 80),
+(1002, 1111, 60),
+(1002, 3333, 95),
+(1002, 4444, 78),
+(1005, 3333, 63);</code></p>
+<h2 id="例子1-丈夫和妻子-一对一"><a href="#例子1-丈夫和妻子-一对一" class="headerlink" title="例子1: 丈夫和妻子 一对一"></a>例子1: 丈夫和妻子 一对一</h2><h3 id="创建丈夫表格"><a href="#创建丈夫表格" class="headerlink" title="创建丈夫表格"></a>创建丈夫表格</h3><p><code>create table tb_husband
+(
+husid int not null auto_increment,
+hname varchar(20) not null,
+wifeid int,
+primary key (husid)
+);</code></p>
+<h3 id="创建妻子表格"><a href="#创建妻子表格" class="headerlink" title="创建妻子表格"></a>创建妻子表格</h3><p><code>create table tb_wife
+(
+wifeid int not null auto_increment,
+wname varchar(20) not null,
+primary key (wifeid)
+);</code></p>
+<h3 id="添加丈夫与妻子的外键约束"><a href="#添加丈夫与妻子的外键约束" class="headerlink" title="添加丈夫与妻子的外键约束"></a>添加丈夫与妻子的外键约束</h3><p><code>alter table tb_husband add constraint fk_husband_wifeid 
+foreign key (wifeid) references tb_wife (wifeid);</code></p>
+<h3 id="添加丈夫与妻子的唯一约束"><a href="#添加丈夫与妻子的唯一约束" class="headerlink" title="添加丈夫与妻子的唯一约束"></a>添加丈夫与妻子的唯一约束</h3><p><code>alter table tb_husband add constraint uk_husband_wifeid 
+unique (wifeid);</code></p>
+<h3 id="参照完整性"><a href="#参照完整性" class="headerlink" title="参照完整性"></a>参照完整性</h3><p><code>insert into tb_husband (hname) values (&#39;王大锤&#39;);
+insert into tb_husband (hname) values (&#39;郭靖&#39;);
+insert into tb_wife (wname) values (&#39;柳岩&#39;);
+update tb_husband set wifeid=1 where husid=1;</code></p>
+<h2 id="例子2-用户和订单-一对多"><a href="#例子2-用户和订单-一对多" class="headerlink" title="例子2: 用户和订单 一对多"></a>例子2: 用户和订单 一对多</h2><h3 id="创建用户表格"><a href="#创建用户表格" class="headerlink" title="创建用户表格"></a>创建用户表格</h3><p><code>create table tb_user
+(
+username varchar(20) not null,
+userpass varchar(20) not null,
+nickname varchar(50) not null,
+email varchar(255),
+primary key (username)
+);</code></p>
+<h3 id="创建订单表格"><a href="#创建订单表格" class="headerlink" title="创建订单表格"></a>创建订单表格</h3><p><code>create table tb_order
+(
+orderid char(12) not null,
+makedate datetime not null,
+userid varchar(20) not null,
+primary key (orderid)
+);</code></p>
+<h3 id="添加用户和订单的外键约束"><a href="#添加用户和订单的外键约束" class="headerlink" title="添加用户和订单的外键约束"></a>添加用户和订单的外键约束</h3><p><code>alter table tb_order add constraint fk_order_userid 
+foreign key (userid) references tb_user (username) on delete restrict;</code></p>
+<blockquote>
+<p>on delete set null<br> on update cascade</p>
+</blockquote>
+<h3 id="添加用户表格内容"><a href="#添加用户表格内容" class="headerlink" title="添加用户表格内容"></a>添加用户表格内容</h3><p><code>insert into tb_user (username, userpass, nickname) values 
+(&#39;jackfrued&#39;, &#39;123123&#39;, &#39;骆昊&#39;),
+(&#39;hellokitty&#39;, &#39;123456&#39;, &#39;王大锤&#39;);
+insert into tb_order values 
+(&#39;112233445566&#39;, now(), &#39;jackfrued&#39;),
+(&#39;112233445567&#39;, now(), &#39;jackfrued&#39;),
+(&#39;223344556677&#39;, now(), &#39;hellokitty&#39;);</code></p>
+<h2 id="例子3-读者和图书-多对多"><a href="#例子3-读者和图书-多对多" class="headerlink" title="例子3: 读者和图书 多对多"></a>例子3: 读者和图书 多对多</h2><h3 id="创建读者表格"><a href="#创建读者表格" class="headerlink" title="创建读者表格"></a>创建读者表格</h3><p><code>create table tb_reader
+(
+readerid int not null,
+rname varchar(20) not null,
+rtel char(11) not null,
+remail varchar(255)
+);</code></p>
+<h3 id="添加读者的主键"><a href="#添加读者的主键" class="headerlink" title="添加读者的主键"></a>添加读者的主键</h3><p><code>alter table tb_reader add constraint pk_reader_readerid 
+primary key (readerid);</code></p>
+<h3 id="创建查询图书的表格"><a href="#创建查询图书的表格" class="headerlink" title="创建查询图书的表格"></a>创建查询图书的表格</h3><p><code>create table tb_record
+(
+recid int not null auto_increment,
+rid int not null,
+bid int not null,
+borrowdate datetime not null,
+returndate datetime,
+primary key (recid)
+);</code></p>
+<h3 id="将两个表格作外键约束"><a href="#将两个表格作外键约束" class="headerlink" title="将两个表格作外键约束"></a>将两个表格作外键约束</h3><p><code>alter table tb_record add constraint fk_record_rid 
+foreign key (rid) references tb_reader (readerid);</code></p>
+<h3 id="外键约束-保证参照完整性"><a href="#外键约束-保证参照完整性" class="headerlink" title="外键约束:  保证参照完整性"></a>外键约束:  保证参照完整性</h3><p><code>alter table tb_record add constraint fk_record_bid 
+foreign key (bid) references tb_book (bookid);</code></p>
+<h3 id="检查约束-保证数据的有效性-域完整性"><a href="#检查约束-保证数据的有效性-域完整性" class="headerlink" title="检查约束: 保证数据的有效性(域完整性)"></a>检查约束: 保证数据的有效性(域完整性)</h3><p><code>alter table tb_record add constraint ck_record_returndate 
+check (returndate &gt; borrowdate);</code></p>
+
+        
+      </div>
     </div>
-    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
-    <div class="sidebar-categories-list"></div>
+
+  
+
+  
+  
+    
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/2018/05/25/hello-world/" >
+  Hello World
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2018/05/25/hello-world/"><span class="article-date">
+  2018-05-25
+</span>
+</a>
+        
+
+        
+
+      </div>
+      <div class="article-entry">
+        
+          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Sta"><a href="#Quick-Sta" class="headerlink" title="Quick Sta"></a>Quick Sta</h2><h3 id="Create-a-new"><a href="#Create-a-new" class="headerlink" title="Create a new"></a>Create a new</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+        
+      </div>
+    </div>
+
+  
+
+
+
+
+
+
+          <div class="main-footer">
+  
+    © 2018 Hexo - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
+  
 </div>
+
+      
+        </div>
+      
     </div>
-</div> 
-    <script>
-    var siteMeta = {
-        root: '/',
-        author: 'John Doe'
-    }
-</script>
-    <!-- CDN failover -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script type="text/javascript">
-        if (typeof window.$ === 'undefined')
-        {
-            console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
-        }
-    </script>
-    <script src="/scripts/main.js"></script>
-    <!-- busuanzi  -->
-    
-    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-    <!-- CNZZ  -->
-    
+  </div>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+             It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+      <!-- Container that holds slides.
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+
+      <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+      <div class="pswp__ui pswp__ui--hidden">
+
+        <div class="pswp__top-bar">
+
+          <!--  Controls are self-explanatory. Order can be changed. -->
+
+          <div class="pswp__counter"></div>
+
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+          <button class="pswp__button pswp__button--share" title="Share"></button>
+
+          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+          <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+          <!-- element will get class pswp__preloader--active when preloader is running -->
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+
+        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+
+        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>
+      </div>
     </div>
-    <!-- async load share.js -->
-    
-    </body>
+  </div>
+
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
+
+
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
+
+</body>
 </html>
-
-
